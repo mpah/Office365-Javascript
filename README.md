@@ -3,7 +3,7 @@ A simple javascript library to handle Office365 API Authentification. Example in
 
 
 # App registration
-Azure AD App registration: https://dev.outlook.com/AppRegistration​
+Azure AD App registration: https://dev.outlook.com/AppRegistration
 
 (You can login with your office365 account)
 
