@@ -11,21 +11,11 @@
  *
  */
 class OfficeAuth {
-
-	static requestToken() {
-		
-		//clientId of the Azure AD application, define in https://apps.dev.microsoft.com/
-		// make sure "oauth2AllowImplicitFlow": true
-		var clientId  = '';
-		//the url which gets redirected to during auth
-		var replyUrl    = 'http://localhost:8080/auth.html';
-		//the resource you are trying to access, for example https://outlook.office365.com/ or https://analysis.windows.net/powerbi/api
-		var resource    = 'https://outlook.office365.com/'; 
-		//the auth backend, we are using the oath v2 here
-		var authServer  = 'https://login.microsoftonline.com/common/oauth2/authorize?';  
-		//keep this as token
-		var responseType = 'token'; 
- 
+	
+	/**
+	 * requests a token from office backend by navigating to url with parameters
+	 */
+	static requestToken(authServer, responseType, clientId, resource, replyUrl ) {
 		//create the url
 		var url = authServer + 
             "response_type=" + encodeURI(responseType) + "&" + 
@@ -36,23 +26,27 @@ class OfficeAuth {
 		window.location = url; 
 	}
 	
+	/**
+	 * get the token from the url
+	 */
 	static getToken(){
 		var accessCode = OfficeAuth.getJsonFromUrl().code;
 		var params = { 
 			grant_type: "authorization_code", 
 			code: accessCode
-		}; 
-		   
+		};  
 
 		// Split the query string (after removing preceding '#'). 
 		var queryStringParameters = OfficeAuth.splitQueryString(window.location.hash.substr(1)); 
-
-
+		
 		// Extract token from urlParameterExtraction object. Show token for debug purposes
 		var token = queryStringParameters['access_token']; 
 		return token;
 	}
 	
+	/**
+	 * parse json from url
+	 */
 	static getJsonFromUrl() {
 	  var query = location.search.substr(1);
 	  var result = {};
@@ -63,6 +57,9 @@ class OfficeAuth {
 	  return result;
 	}
 	
+	/**
+	 * split url
+	 */
 	static splitQueryString(queryStringFormattedString) { 
 		var split = queryStringFormattedString.split('&'); 
 
