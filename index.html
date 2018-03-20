@@ -5,6 +5,23 @@
     <script src="officeAuth.js" type="text/javascript"></script>
   </head>
   <body>
+	<script type="text/javascript">
+	//-------------------------------------------------------------------------------//
+	//                                Configuration
+	//-------------------------------------------------------------------------------//
+	//clientId of the Azure AD application, define in https://apps.dev.microsoft.com/
+	// make sure "oauth2AllowImplicitFlow": true
+	var clientId  = '8e5df105-14b7-45dc-b2c3-9da948633e26';
+	//the url which gets redirected to during auth
+	var replyUrl    = 'http://localhost:8080/auth.html';
+	//the resource you are trying to access, for example https://outlook.office365.com/ or https://analysis.windows.net/powerbi/api
+	var resource    = 'https://outlook.office365.com/'; 
+	//the auth backend, we are using the oath v2 here
+	var authServer  = 'https://login.microsoftonline.com/common/oauth2/authorize?';  
+	//keep this as token
+	//-------------------------------------------------------------------------------//
+	var responseType = 'token';
+	</script>
     <a href="javascript:OfficeAuth.requestToken();">Start Office Auth</a>
   </body>
 </html>

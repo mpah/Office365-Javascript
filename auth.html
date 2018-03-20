@@ -15,11 +15,9 @@
     <script type="text/javascript">
 		//get the access token
 		var token = OfficeAuth.getToken();
-		//console.log("Access Token:"+token);
-		//the id of the calender you want to access
-		var calenderId = ''; 
-		//get the calendar
-		OutlookAPI.getCalendar(calenderId);
+		console.log("Access Token:"+token);
+		//list all my calendars
+		OutlookAPI.getCalendars();
 	</script>
   </body>
 </html>
